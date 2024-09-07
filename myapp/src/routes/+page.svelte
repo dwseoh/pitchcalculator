@@ -1,22 +1,54 @@
+<svelte:head>
+<!--   <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#ffffff"> -->
+</svelte:head>
 
-<script>
+
+<script lang='ts'>
 	let status='none' //recording recorded none
 	let display='Start'
+	let resultDisplay = ''
 	let errorMessage = ''
 	let distance = 18.39
 	let unit = 'meters'
+	let speed = 0.0
+	let startTime = Date.now()
+	let elapsedTime = 0
+	let interval = 0
+
+	function calculate(){
+		if (unit == 'meters'){
+			speed = distance/(elapsedTime/1000)*3.6 //km/h
+			resultDisplay = Math.round(speed)+'km/h'
+		}
+		else {
+			speed = distance/(elapsedTime/1000)*3600/5280 //mph
+			resultDisplay = Math.round(speed)+'mph'
+
+		}
+
+	}
+
 	function checkStatus(){
 		if (status == 'none' || status == 'recorded') {
+			resetStopwatch()
 			status = 'recording'
 			display = 'Stop'
+			startStopwatch()
 			
 		}
 		else if (status == 'recording') {
+			stopStopwatch()
 			status = 'recorded'
 			display = 'Start'
+			calculate()
 		}
 	}
 
+	
 	function unitMeters(){
 		unit = 'meters'
 	}
@@ -24,10 +56,37 @@
 		unit = 'feet'
 	}
 
+	function startStopwatch() {
+		startTime = Date.now() - elapsedTime; 
+		interval = setInterval(() => {
+			elapsedTime = Date.now() - startTime;
+		}, 1) 
+	}
+
+	function stopStopwatch() {
+		clearInterval(interval)
+	}
+
+	function resetStopwatch() {
+		clearInterval(interval)
+		elapsedTime = 0
+	}
+
+	function formatTime(ms) {
+		const seconds = Math.floor(ms / 1000);
+		const milliseconds = ms%1000
+		return `${seconds}:${String(milliseconds % 60).padStart(2, '0')}`;
+	}
+
+	function showInstructions() {
+		alert("INSTRUCTIONS\n1. Configure the distance, and choose your units (meters or feet)\n2. Press start as soon as the pitcher releases the ball from their hand\n3. Press stop as soon as the ball reaches the catcher's glove\n4. The resulting pitch would show in kmh or mph depending on your unit.")
+	}
+
+
 </script>
 
 <div class='all'>
-	<!-- <h1>Hello {name}!</h1> -->
+
 	<div class='top-section'>
 		<img alt="thumbnail" id="thumbnail-image" src="speedgun.svg">
 		<h1 id='thumbnail-title'>Speedgun<br> Online</h1>
@@ -52,25 +111,69 @@
 				{display}
 			</button>
 		</div>
+		<p>{formatTime(elapsedTime)}</p>
 	</section>
 
 	<section class='results'>
-
+	
+		<p id='result-text'>{resultDisplay}</p>
 	</section>
 
-	<section class='instructions'>
-		
-	</section>
+	<footer>
+		<p on:click={showInstructions} class='footer-element link'>Instructions</p>
+		<p class='footer-element'><a class='link' href='https://dwseoh.com' target='_blank'>dwseoh.com</a></p>
+	</footer>
 
 </div>
 <!--  later use variables for device compatability in html -->
 
 
 <style>
+
+
+
 	.all{
 		font-family: 'DM Sans';
 		color: rgb(209, 208, 208);
+		margin:0;
 
+	}
+
+	footer{
+		display:flex;
+		bottom:0;
+		position:absolute;
+		width:99vw;
+		justify-content: center;
+		overflow:hidden;
+	}
+	
+	.footer-element{
+		margin:0em 1.2em 2em 1.2em;
+		font-size:1.2em;
+
+	}
+
+	.link,.link:active,.link:visited,.link:hover{
+		color:rgb(209, 208, 208);
+		text-decoration: none;
+	}
+
+	.link:hover{
+		text-decoration: underline;
+		cursor:pointer;
+	}
+
+	#result-text{
+		text-align: center;
+		font-size:2.5em;
+		font-weight:500;
+		color:#F2A30B;
+		margin:0;
+	}
+
+	.results{
+		margin:0;
 	}
 
 	.event-button-pressed{
@@ -161,4 +264,94 @@
 		margin:2.5em 0em 1em 0em;
 		padding-right:7em;
 	}
+
+
+	
+	@media screen and (max-width:700px)  {
+		#thumbnail-title{
+			font-size:4em;
+			line-height:80px;
+		}
+
+		#thumbnail-image{
+			margin-right:1.5em;
+			width:25%;
+		}
+
+		.event-button,.event-button-pressed{
+			font-size:1.95em;
+		}
+
+		#distance-input{
+			font-size:0.48em;
+		}
+
+		#main-section-top{
+			font-size:2.8em;
+		}
+
+		#main-section-middle{
+			font-size:1.3em;
+		}
+
+
+
+	}
+
+	@media screen and (max-width:570px)  {
+
+		.top-section{
+			flex-direction: column;
+			align-items: center;
+			width:100vw;
+		}
+
+		#thumbnail-image{
+			margin: 0em 0em 0em 0em;
+			width:35%;
+			justify-self: center;
+		}
+
+		#thumbnail-title{
+			font-size:4em;
+			line-height:80px;
+			margin: 0.2em 0em 0.2em 0em;
+		}
+
+	}
+
+	@media screen and (max-width:500px)  {
+
+		#thumbnail-image{
+			margin: 0em 0em 0em 0em;
+			width:35%;
+			justify-self: center;
+		}
+
+		#thumbnail-title{
+			font-size:4em;
+			line-height:80px;
+			margin: 0.2em 0em 0.2em 0em;
+		}
+
+
+		.event-button,.event-button-pressed{
+			font-size:1.65em;
+		}
+
+		#distance-input{
+			font-size:0.45em;
+		}
+
+		#main-section-top{
+			font-size:2.5em;
+		}
+
+		#main-section-middle{
+			font-size:1.1em;
+		}
+
+	}
+
+
 </style>
