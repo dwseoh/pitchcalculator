@@ -3,7 +3,6 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css" />
 	<link rel="icon" type="image/png" href="speedgun.svg" sizes="32x32" />
 	<link rel="icon" type="image/png" href="speedgun.svg" sizes="16x16" />
 </svelte:head>
