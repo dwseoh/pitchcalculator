@@ -19,7 +19,7 @@
 	let speed = 0.0
 	let startTime = Date.now()
 	let elapsedTime = 0
-	let interval = 0
+	let interval
 
 	function calculate(){
 		if (unit == 'meters'){
