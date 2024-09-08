@@ -306,6 +306,9 @@
 			flex-direction: column;
 			align-items: center;
 			width:100vw;
+			padding-right:0em;
+			margin:2.5em 0em 1em 0em;
+
 		}
 
 		#thumbnail-image{
@@ -323,6 +326,10 @@
 	}
 
 	@media screen and (max-width:500px)  {
+
+		.top-section{
+			margin:1.8em 0em 1em 0em;
+		}
 
 		#thumbnail-image{
 			margin: 0em 0em 0em 0em;
