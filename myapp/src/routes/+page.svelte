@@ -174,7 +174,7 @@
 	}
 
 	.results{
-		margin:0;
+		margin:0em 0em 4em 0em;
 	}
 
 	.event-button-pressed{
@@ -332,7 +332,7 @@
 		#thumbnail-title{
 			font-size:4em;
 			line-height:80px;
-			margin: 0.2em 0em 0.2em 0em;
+			margin: 0.1em 0em 0.1em 0em;
 		}
 
 
