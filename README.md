@@ -1,5 +1,5 @@
 # Online Speedgun (Baseball)
-This is a web app developed with SvelteKit (and deployed on Vercel)
+This is a web app developed with SvelteKit (and deployed on Vercel).
 With a built-in timer, it measures the speed of a baseball pitch based on the release and catch timing.
 It supports both `km/h` and `mph` (`meters` and `feet`)
 
