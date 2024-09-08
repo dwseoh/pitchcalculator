@@ -143,7 +143,7 @@
 	footer{
 		display:flex;
 		bottom:0;
-		position:absolute;
+		position:relative;
 		width:99vw;
 		justify-content: center;
 		overflow:hidden;
@@ -174,7 +174,7 @@
 	}
 
 	.results{
-		margin:0em 0em 4em 0em;
+		margin:0em 0em 2em 0em;
 	}
 
 	.event-button-pressed{
@@ -183,7 +183,7 @@
 		border-radius:5px;
 		font-size:2em;
 		margin: 0.5em 0em 0em 0em;
-		padding: 0.1em 4em 0.1em 4em;
+		padding: 0.5em 4em 0.5em 4em;
 		background-color: #F2A30B;
 		
 	}
@@ -194,7 +194,7 @@
 		border-radius:5px;
 		font-size:2em;
 		margin: 0.5em 0em 0em 0em;
-		padding: 0.1em 4em 0.1em 4em;
+		padding: 0.5em 4em 0.5em 4em;
 		background-color: rgb(209, 208, 208);
 		
 	}
