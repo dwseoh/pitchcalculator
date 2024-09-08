@@ -84,15 +84,7 @@
 		alert("INSTRUCTIONS\n1. Configure the distance, and choose your units (meters or feet)\n2. Press start as soon as the pitcher releases the ball from their hand\n3. Press stop as soon as the ball reaches the catcher's glove\n4. The resulting pitch would show in kmh or mph depending on your unit.")
 	}
 
-	let lastTouchEnd = 0;
-	document.addEventListener('touchend', function(event) {
-		const now = (new Date()).getTime();
-		if (now - lastTouchEnd <= 300) {
-			event.preventDefault();
-		}
-		lastTouchEnd = now;
-	}, false);
-
+	
 </script>
 
 <div class='all'>
