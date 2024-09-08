@@ -1,12 +1,12 @@
 <svelte:head>
 	<title>Speedgun Online</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" 
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 	<link rel="icon" type="image/png" href="speedgun.svg" sizes="32x32" />
 	<link rel="icon" type="image/png" href="speedgun.svg" sizes="16x16" />
 </svelte:head>
+
 
 
 <script lang='ts'>
@@ -84,6 +84,14 @@
 		alert("INSTRUCTIONS\n1. Configure the distance, and choose your units (meters or feet)\n2. Press start as soon as the pitcher releases the ball from their hand\n3. Press stop as soon as the ball reaches the catcher's glove\n4. The resulting pitch would show in kmh or mph depending on your unit.")
 	}
 
+	let lastTouchEnd = 0;
+	document.addEventListener('touchend', function(event) {
+		const now = (new Date()).getTime();
+		if (now - lastTouchEnd <= 300) {
+			event.preventDefault();
+		}
+		lastTouchEnd = now;
+	}, false);
 
 </script>
 
