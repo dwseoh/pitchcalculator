@@ -308,28 +308,8 @@
 			align-items: center;
 			width:100vw;
 			padding-right:0em;
-			margin:2.5em 0em 1em 0em;
-
-		}
-
-		#thumbnail-image{
-			margin: 0em 0em 0em 0em;
-			width:35%;
-			justify-self: center;
-		}
-
-		#thumbnail-title{
-			font-size:4em;
-			line-height:80px;
-			margin: 0.2em 0em 0.2em 0em;
-		}
-
-	}
-
-	@media screen and (max-width:500px)  {
-
-		.top-section{
 			margin:1.8em 0em 1em 0em;
+
 		}
 
 		#thumbnail-image{
@@ -343,7 +323,6 @@
 			line-height:80px;
 			margin: 0.1em 0em 0.1em 0em;
 		}
-
 
 		.event-button,.event-button-pressed{
 			font-size:1.65em;
@@ -362,6 +341,7 @@
 		}
 
 	}
+
 
 
 </style>
