@@ -8,6 +8,7 @@ It supports both `km/h` and `mph` (`meters` and `feet`)
 ## Run it locally
 Run the following command in your terminal:
 ```
+cd myapp
 npm install
 npm run dev
 ```
