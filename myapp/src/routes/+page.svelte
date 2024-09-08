@@ -138,7 +138,7 @@
 		font-family: 'DM Sans';
 		color: rgb(209, 208, 208);
 		margin:0;
-
+		overflow:hidden;
 	}
 
 	footer{
@@ -197,6 +197,7 @@
 		margin: 0.5em 0em 0em 0em;
 		padding: 0.5em 4em 0.5em 4em;
 		background-color: rgb(209, 208, 208);
+		will-change: contents;
 		
 	}
 
