@@ -76,7 +76,7 @@
 	function formatTime(ms) {
 		const seconds = Math.floor(ms / 1000);
 		const milliseconds = ms%1000
-		return `${seconds}:${String(milliseconds % 60).padStart(2, '0')}`;
+		return `${seconds}.${milliseconds}`;
 	}
 
 	function showInstructions() {
